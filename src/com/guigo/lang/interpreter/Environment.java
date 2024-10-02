@@ -30,9 +30,9 @@ public class Environment {
     }
 
     public boolean isDefined(Token name) {
-        if(variables.containsKey(name.lexeme())) {
+        if (variables.containsKey(name.lexeme())) {
             return true;
-        } else if(enclosing != null) {
+        } else if (enclosing != null) {
             return enclosing.isDefined(name);
         } else {
             return false;
@@ -44,20 +44,20 @@ public class Environment {
     }
 
     public Object get(Token key) {
-        if(variables.containsKey(key.lexeme())) {
+        if (variables.containsKey(key.lexeme())) {
             return variables.get(key.lexeme());
+        } else if (enclosing != null) {
+            return enclosing.get(key);
+        } else {
+            GuigoLang.error(key, "Undefined variable '" + key.lexeme() + "'.", GuigoErrorCode.UndefinedVariable);
+            return null;
         }
-
-        GuigoLang.error(key, "Undefined variable '" + key.lexeme() + "'.", GuigoErrorCode.UndefinedVariable);
-
-        // Unreachable
-        return null;
     }
 
     public void set(Token name, Object value) {
-        if(variables.containsKey(name.lexeme())) {
+        if (variables.containsKey(name.lexeme())) {
             variables.put(name.lexeme(), value);
-        } else if(enclosing != null) {
+        } else if (enclosing != null) {
             enclosing.set(name, value);
         } else {
             GuigoLang.error(name, "Undefined variable '" + name.lexeme() + "'.", GuigoErrorCode.UndefinedVariable);
