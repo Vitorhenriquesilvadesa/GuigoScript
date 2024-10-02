@@ -1,0 +1,7 @@
+// Source clause is optional
+source "image/path.png"
+target "exit/image/path.png"
+
+kernel gray_scale {
+    return (pos.x, pos.y, 0);
+}

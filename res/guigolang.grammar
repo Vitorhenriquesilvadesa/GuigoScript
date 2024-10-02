@@ -1,0 +1,11 @@
+<expression> ::= <term>
+
+<term> ::= <factor> + <factor> | <factor> - <factor> | <factor>
+
+<factor> ::= <unary> * <unary> | <unary> / <unary> | <unary>
+
+<unary> ::= "-" <expression> | "!" <expression> | <literal>
+
+<literal> ::= <string> | <boolean> | <number> | <null> | <group>
+
+<group> ::= ( <expression> )
