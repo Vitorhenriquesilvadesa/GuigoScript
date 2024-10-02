@@ -18,4 +18,9 @@ public class BinaryExpression extends Expression {
     public String toString() {
         return "Binary(" + left.toString() + ", " + operator.type() + ", " + right.toString() + ")";
     }
+
+    @Override
+    public <R> R accept(ExpressionVisitor<R> visitor) {
+        return visitor.visitBinaryExpression(this);
+    }
 }

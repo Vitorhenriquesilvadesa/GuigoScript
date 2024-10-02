@@ -1,7 +1,14 @@
-// Source clause is optional
-source "image/path.png"
-target "exit/image/path.png"
-
-kernel gray_scale {
-    return (pos.x, pos.y, 0);
+var y = 10;
+print(y);
+{
+    var y = 20;
+    print(y);
+    {
+        var y = 30;
+        print(y);
+        {
+            var y = 40;
+            print(y);
+        }
+    }
 }

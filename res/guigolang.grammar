@@ -1,4 +1,32 @@
-<expression> ::= <term>
+<program> ::= <statement>*
+
+<declaration> ::= <variableDeclaration>
+
+<variableDeclaration> ::= var <identifier> = <expression> ;
+
+<statement> ::= <printStatement> | <ifStatement> | <bodyStatement> | <declaration>
+
+<whileStatement> ::= while(<expression>)<statement>
+
+<bodyStatement> ::=  { <statement>* }
+
+<ifStatement> ::= if(<expression>)<statement> <elseStatement>?
+
+<elseStatement> ::= else<statement>
+
+<printStatement> ::= print(<expression>)
+
+<expression> ::= <assignment>
+
+<assignment> ::= <identifier> (= <ternary>)+
+
+<and> ::= <or> and <or> | <or>
+
+<or> ::= <equality> or <equality> | <equality>
+
+<equality> ::= <comparison> == <comparison> | <comparison> != <comparison> | <comparison>
+
+<comparison> ::= <term> > <term> | <term> < <term> | <term> >= <term> | <term> <= <term> | <term>
 
 <term> ::= <factor> + <factor> | <factor> - <factor> | <factor>
 
@@ -6,6 +34,6 @@
 
 <unary> ::= "-" <expression> | "!" <expression> | <literal>
 
-<literal> ::= <string> | <boolean> | <number> | <null> | <group>
+<literal> ::= <string> | <boolean> | <number> | <null> | <group> | <identifier>
 
 <group> ::= ( <expression> )

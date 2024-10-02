@@ -16,4 +16,9 @@ public class GroupExpression extends Expression {
     public String toString() {
         return "Group(" + expression.toString() + ")";
     }
+
+    @Override
+    public <R> R accept(ExpressionVisitor<R> visitor) {
+        return visitor.visitGroupExpression(this);
+    }
 }

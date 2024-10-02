@@ -31,7 +31,14 @@ public class Scanner {
         symbols.put("true", True);
         symbols.put("false", False);
         symbols.put("null", Null);
-
+        symbols.put("or", Or);
+        symbols.put("and", And);
+        symbols.put("print", Print);
+        symbols.put("if", If);
+        symbols.put("else", Else);
+        symbols.put("while", While);
+        symbols.put("var", Var);
+        
         booleans = new HashMap<>();
         booleans.put("true", true);
         booleans.put("false", false);
@@ -74,6 +81,24 @@ public class Scanner {
 
                 break;
 
+            case '<':
+                if (match('=')) {
+                    makeToken(LessEqual, "<=");
+                } else {
+                    makeToken(TokenType.Less, "<");
+                }
+
+                break;
+
+            case '=':
+                if (match('=')) {
+                    makeToken(EqualEqual, "==");
+                } else {
+                    makeToken(TokenType.Equal, "=");
+                }
+
+                break;
+
             case '(':
                 makeToken(LeftParen, "(");
                 break;
@@ -96,6 +121,14 @@ public class Scanner {
                 makeToken(Dot, ".");
                 break;
 
+            case ':':
+                makeToken(Colon, ".");
+                break;
+
+            case '?':
+                makeToken(Question, "?");
+                break;
+
 
             case ',':
                 makeToken(Comma, ",");
@@ -107,7 +140,11 @@ public class Scanner {
                 break;
 
             case '!':
-                makeToken(Mark, "!");
+                if(match('=')) {
+                    makeToken(NotEqual, "!=");
+                } else {
+                    makeToken(Mark, "!");
+                }
                 break;
 
             case '-':

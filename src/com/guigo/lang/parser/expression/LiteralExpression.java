@@ -14,4 +14,9 @@ public class LiteralExpression extends Expression {
     public String toString() {
         return "Literal(" + literal.literal().toString() + ", type: " + literal.literal().getClass().getSimpleName() + ")";
     }
+
+    @Override
+    public <R> R accept(ExpressionVisitor<R> visitor) {
+        return visitor.visitLiteralExpression(this);
+    }
 }

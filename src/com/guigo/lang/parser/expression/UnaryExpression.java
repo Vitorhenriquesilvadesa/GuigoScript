@@ -16,4 +16,9 @@ public class UnaryExpression extends Expression {
     public String toString() {
         return "Unary(" + operator.type() + ", " + expression.toString() + ")";
     }
+
+    @Override
+    public <R> R accept(ExpressionVisitor<R> visitor) {
+        return visitor.visitUnaryExpression(this);
+    }
 }

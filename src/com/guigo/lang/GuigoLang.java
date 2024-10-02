@@ -1,6 +1,7 @@
 package com.guigo.lang;
 
 import com.guigo.lang.error.GuigoErrorCode;
+import com.guigo.lang.interpreter.Interpreter;
 import com.guigo.lang.parser.ParsedData;
 import com.guigo.lang.parser.Parser;
 import com.guigo.lang.parser.expression.Expression;
@@ -26,9 +27,12 @@ public class GuigoLang {
         Parser parser = new Parser();
         ParsedData parsedData = parser.parseTokens(scannedData);
 
-        for(Expression expression : parsedData.expressions()) {
-            System.out.println(expression.toString());
-        }
+//        for(Expression expression : parsedData.expressions()) {
+//            System.out.println(expression.toString());
+//        }
+
+        Interpreter interpreter = new Interpreter();
+        interpreter.interpret(parsedData);
     }
 
     public static String extractContentFromFile(String filepath) {
